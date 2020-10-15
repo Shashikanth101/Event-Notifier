@@ -2,7 +2,7 @@
 A Firebase cloud function to notify about events through email
 
 ## Description
-A cloud function that runs once every day at 12am. It reads a shared Google Spreadsheet for any events on that particular date. If there is one, it sends an email to the receiver with details about that event.
+A Cron Job that runs once every day at 12am. It reads a shared Google Spreadsheet for any events on that particular date. If there is one, it sends an email to the receiver with details about that event.
 
 ## Pre requisites
 - Make sure to have an email account which supports nodemailer. [(Check Article)](https://nodemailer.com/smtp/well-known/)
