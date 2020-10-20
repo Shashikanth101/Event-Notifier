@@ -3,7 +3,7 @@ const sendMail = require('./helpers/sendMail.js');
 const { getSpreadsheetData } = require('./helpers/spreadsheet.js');
 
 // Run once everyday at 12 am Indian Standard Time
-exports.checkForEvents = functions.region('asia-south1').pubsub.schedule('0 0 * * *').onRun(async context => {
+exports.checkForEvents = functions.pubsub.schedule('0 0 * * *').timeZone('Asia/Kolkata').onRun(async context => {
   const { spreadsheet_uri, smtp_config } = functions.config().eventnotifier;
   const { err, data: eventData } = await getSpreadsheetData(spreadsheet_uri);
 
@@ -16,10 +16,10 @@ exports.checkForEvents = functions.region('asia-south1').pubsub.schedule('0 0 * 
 
   // Check if there is any event today
   eventData.forEach(entry => {
-    const [eventPerson, eventDate, eventType] = entry;
-    if (eventDate === `${month}/${day}`) {
+    const [eventPerson, eventDay, eventMonth, eventType] = entry;
+    if (Number(eventDay) === day && Number(eventMonth) === month) {
       sendMail({
-        event: { message: `Wish ${eventPerson}, A Happy ${eventType} today i.e., on ${eventDate}`, eventType },
+        event: { message: `Wish ${eventPerson}, A Happy ${eventType} today i.e., on ${day}/${month}`, eventType },
         smtp_config: smtp_config
       });
     }

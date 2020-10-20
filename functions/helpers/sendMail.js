@@ -36,11 +36,11 @@ async function sendMail ({ err, event, smtp_config }) {
   // Message to be sent
   message.subject = err ? 'Error' : `Firebase Events: ${eventType} Reminder`;
   message.html = err ? err : 
-  `<div style="width: 100%; height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif">
-    <div style="max-width: 70%; background-color: #0070F3; padding: 10px; border-radius: 10px; text-align: center">
+  `<div style="width: 100%; height: 40vh; font-family: sans-serif">
+    <div style="max-width: 70%; background-color: #0070F3; margin: 30px auto 0; padding: 10px; border-radius: 10px; text-align: center">
       <h1 style="color: #FFF">${eventMessage}</h1>
     </div>
-    <p style="color: #555; font-size: 0.9rem">Sent using Firebase functions | Shashikanth P &#169; 2020</p>
+    <p style="color: #555; font-size: 0.9rem; text-align: center">Sent using Firebase functions | Shashikanth P &#169; 2020</p>
   </div>`;
 
   transport.sendMail(message, (err, info) => {

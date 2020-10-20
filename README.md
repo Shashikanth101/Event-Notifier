@@ -7,7 +7,7 @@ A Cron Job that runs once every day at 12am. It reads a shared Google Spreadshee
 ## Pre requisites
 - Make sure to have an email account which supports nodemailer. [(Check Article)](https://nodemailer.com/smtp/well-known/)
 - Make sure you have node.js and npm already installed and clone this repository
-- Save all event data in a google spreadsheet in the format [ Name | Date | Event_Type ]. Make sure the date is of the format (Month/Day). Example: [ Mom | 8/24 | Birthday ].
+- Save all event data in a google spreadsheet in the format [ Name | Day | Month | Event_Type ]. Example: [ Mom | 24 | 8 | Birthday ]
 - Make sure you have firebase-cli installed. If not, enter the below command in your terminal to install it globally
 ```bash
 npm install firebase-tools -g
