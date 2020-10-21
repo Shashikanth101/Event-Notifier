@@ -2,8 +2,8 @@ const functions = require('firebase-functions');
 const sendMail = require('./helpers/sendMail.js');
 const { getSpreadsheetData } = require('./helpers/spreadsheet.js');
 
-// Run once everyday at 12 am Indian Standard Time
-exports.checkForEvents = functions.region('asia-south1').pubsub.schedule('0 0 * * *').timeZone('Asia/Kolkata').onRun(async context => {
+// Run once everyday at 6 am Indian Standard Time
+exports.checkForEvents = functions.region('asia-south1').pubsub.schedule('0 6 * * *').timeZone('Asia/Kolkata').onRun(async context => {
   const { spreadsheet_uri, smtp_config } = functions.config().eventnotifier;
   const { err, data: eventData } = await getSpreadsheetData(spreadsheet_uri);
 
